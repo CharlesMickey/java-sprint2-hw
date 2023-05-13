@@ -5,10 +5,9 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-
-    FileReader fileReader = new FileReader();
-    ArrayList contentYearFile = fileReader.readFileContents("y.2021.csv");
-    System.out.println(contentYearFile);
+    MonthlyReport monthlyReport = new MonthlyReport();
+    YearlyReport yearlyReport = new YearlyReport();
+    ReportEngine reportEngine = new ReportEngine(monthlyReport, yearlyReport);
 
     while (true) {
       mainMenu();
@@ -16,14 +15,19 @@ public class Main {
       String command = scanner.nextLine();
       if (command.equals("1")) {
         System.out.println(1);
+        monthlyReport.readMonthlyReports();
       } else if (command.equals("2")) {
         System.out.println(2);
+        yearlyReport.readYearlyReport();
       } else if (command.equals("3")) {
         System.out.println(3);
+        reportEngine.verification();
       } else if (command.equals("4")) {
         System.out.println(4);
+        reportEngine.getMonthStatistic();
       } else if (command.equals("5")) {
-          System.out.println(5);
+        System.out.println(5);
+        reportEngine.getYearStatistic();
       } else if (command.equals("Exit")) {
         return;
       } else {
