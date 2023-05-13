@@ -27,7 +27,9 @@ public class ReportEngine {
   }
 
   public void getYearStatistic() {
-    if (yearlyReport.isYearlyReportsRead() && monthlyReport.isMonthlyReportsRead()) {
+    if (
+      yearlyReport.isYearlyReportsRead() && monthlyReport.isMonthlyReportsRead()
+    ) {
       HashMap<Integer, ArrayList<MonthTotalPerYear>> monthTotalPerYear = yearlyReport.getMonthTotalPerYear();
       for (int i = 1; i <= monthTotalPerYear.size(); i++) {
         ArrayList<MonthTotalPerYear> monthTotalPerYearList = monthTotalPerYear.get(
@@ -37,14 +39,22 @@ public class ReportEngine {
       }
       System.out.println(
         "Средний доход за все имеющиеся операции в году составил: " +
-        (yearlyReport.profitsPerYear() / monthlyReport.allOperationsCount())
+        String.format(
+          "%.3f",
+          yearlyReport.profitsPerYear() / monthlyReport.allOperationsCount()
+        )
       );
       System.out.println(
         "Средний расход за все имеющиеся операции в году составил: " +
-        (yearlyReport.expensesPerYear() / monthlyReport.allOperationsCount())
+        String.format(
+          "%.3f",
+          yearlyReport.expensesPerYear() / monthlyReport.allOperationsCount()
+        )
       );
     } else {
-      System.out.println("Пожалуйста, сначала считайте данные годового и месячных отчетов");
+      System.out.println(
+        "Пожалуйста, сначала считайте данные годового и месячных отчетов"
+      );
     }
   }
 

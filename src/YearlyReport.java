@@ -65,7 +65,7 @@ public class YearlyReport {
     );
   }
 
-  public int expensesPerYear() {
+  public double expensesPerYear() {
     int expense = 0;
     for (int i = 1; i <= monthsTotalPerYear.size(); i++) {
       ArrayList<MonthTotalPerYear> monthTotalPerYearList = monthsTotalPerYear.get(
@@ -81,7 +81,7 @@ public class YearlyReport {
     return expense;
   }
 
-  public int profitsPerYear() {
+  public double profitsPerYear() {
     int profit = 0;
     for (int i = 1; i <= monthsTotalPerYear.size(); i++) {
       ArrayList<MonthTotalPerYear> monthTotalPerYearList = monthsTotalPerYear.get(

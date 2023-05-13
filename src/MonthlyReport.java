@@ -12,7 +12,6 @@ public class MonthlyReport {
   private final HashMap<Integer, ArrayList<Transaction>> transactions = new HashMap<>();
 
   public void readMonthlyReports() {
-
     allOperationsCount = 0;
     transactions.clear();
 
@@ -35,7 +34,7 @@ public class MonthlyReport {
         );
 
         allOperationsCount += 1;
-        
+
         if (transactions.containsKey(i)) {
           transactions.get(i).add(transaction);
         } else {
@@ -69,7 +68,8 @@ public class MonthlyReport {
       "наибольшая трата пришлась на " +
       productName +
       " и составила " +
-      price + "."
+      price +
+      "."
     );
   }
 
@@ -93,35 +93,30 @@ public class MonthlyReport {
       "самым прибыльным товаром является " +
       productName +
       " на сумму " +
-      price + "."
+      price +
+      "."
     );
   }
-  public int getAllProfits(
-          ArrayList<Transaction> transactionList
-  ) {
 
+  public int getAllProfits(ArrayList<Transaction> transactionList) {
     int profit = 0;
     for (Transaction transaction : transactionList) {
-      if (!transaction.expense ) {
+      if (!transaction.expense) {
         profit += transaction.quantity * transaction.sumOfOne;
       }
     }
     return profit;
   }
 
-  public int getAllExpenses(
-          ArrayList<Transaction> transactionList
-  ) {
-
+  public int getAllExpenses(ArrayList<Transaction> transactionList) {
     int expenses = 0;
     for (Transaction transaction : transactionList) {
-      if (transaction.expense ) {
+      if (transaction.expense) {
         expenses += transaction.quantity * transaction.sumOfOne;
       }
     }
     return expenses;
   }
-
 
   public HashMap<Integer, ArrayList<Transaction>> getTransactions() {
     return transactions;
