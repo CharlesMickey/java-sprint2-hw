@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -12,26 +11,27 @@ public class Main {
     while (true) {
       mainMenu();
 
-      String command = scanner.nextLine();
-      if (command.equals("1")) {
-        System.out.println(1);
-        monthlyReport.readMonthlyReports();
-      } else if (command.equals("2")) {
-        System.out.println(2);
-        yearlyReport.readYearlyReport();
-      } else if (command.equals("3")) {
-        System.out.println(3);
-        reportEngine.verification();
-      } else if (command.equals("4")) {
-        System.out.println(4);
-        reportEngine.getMonthStatistic();
-      } else if (command.equals("5")) {
-        System.out.println(5);
-        reportEngine.getYearStatistic();
-      } else if (command.equals("Exit")) {
-        return;
-      } else {
-        System.out.println("Кажется такой команды нет...;(");
+      String command = scanner.nextLine().trim();
+      switch (command) {
+        case "1":
+          monthlyReport.readMonthlyReports();
+          break;
+        case "2":
+          yearlyReport.readYearlyReport();
+          break;
+        case "3":
+          reportEngine.verification();
+          break;
+        case "4":
+          reportEngine.getMonthStatistic();
+          break;
+        case "5":
+          reportEngine.getYearStatistic();
+          break;
+        case "Exit":
+          return;
+        default:
+          System.out.println("Кажется такой команды нет...;(");
       }
     }
   }

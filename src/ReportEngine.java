@@ -27,9 +27,7 @@ public class ReportEngine {
   }
 
   public void getYearStatistic() {
-    if (
-      yearlyReport.isYearlyReportsRead() && monthlyReport.isMonthlyReportsRead()
-    ) {
+    if (yearlyReport.isYearlyReportsRead()) {
       HashMap<Integer, ArrayList<MonthTotalPerYear>> monthTotalPerYear = yearlyReport.getMonthTotalPerYear();
       for (int i = 1; i <= monthTotalPerYear.size(); i++) {
         ArrayList<MonthTotalPerYear> monthTotalPerYearList = monthTotalPerYear.get(
@@ -39,22 +37,14 @@ public class ReportEngine {
       }
       System.out.println(
         "Средний доход за все имеющиеся операции в году составил: " +
-        String.format(
-          "%.3f",
-          yearlyReport.profitsPerYear() / monthlyReport.allOperationsCount()
-        )
+        String.format("%.3f", yearlyReport.averageProfitsPerYear())
       );
       System.out.println(
         "Средний расход за все имеющиеся операции в году составил: " +
-        String.format(
-          "%.3f",
-          yearlyReport.expensesPerYear() / monthlyReport.allOperationsCount()
-        )
+        String.format("%.3f", yearlyReport.averageExpensesPerYear())
       );
     } else {
-      System.out.println(
-        "Пожалуйста, сначала считайте данные годового и месячных отчетов"
-      );
+      System.out.println("Пожалуйста, сначала считайте данные годовог отчета");
     }
   }
 
@@ -72,12 +62,12 @@ public class ReportEngine {
         int allExpenses = monthlyReport.getAllExpenses(transactionList);
 
         for (MonthTotalPerYear totalPerYear : monthTotalPerYear.get(i)) {
-          String message = "";
+          String message;
           if (totalPerYear.expense && totalPerYear.amount != allExpenses) {
             message =
-              "Сумма расходов в отчета за " +
+              "Сумма расходов в отчете за " +
               i +
-              " месяц, не соответсвтует сумме расходов в годовом отчете. Год: " +
+              " месяц, не соответствует сумме расходов в годовом отчете. Год: " +
               totalPerYear.amount +
               ", месяц: " +
               allExpenses;
@@ -86,9 +76,9 @@ public class ReportEngine {
             !totalPerYear.expense && totalPerYear.amount != allProfits
           ) {
             message =
-              "Сумма доходов в отчета за " +
+              "Сумма доходов в отчете за " +
               i +
-              " месяц, не соответсвтует сумме доходов в годовом отчете. Год: " +
+              " месяц, не соответствует сумме доходов в годовом отчете. Год: " +
               totalPerYear.amount +
               ", месяц: " +
               allProfits;

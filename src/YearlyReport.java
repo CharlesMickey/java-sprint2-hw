@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class YearlyReport {
 
   private final String FILE_NAME = "y.2021.csv";
-  final FileReader fileReader = new FileReader();
+  private final FileReader fileReader = new FileReader();
   private boolean yearlyReportsRead = false;
   private final HashMap<Integer, ArrayList<MonthTotalPerYear>> monthsTotalPerYear = new HashMap<>();
 
@@ -33,7 +33,9 @@ public class YearlyReport {
       }
       yearlyReportsRead = true;
     }
-    System.out.println("Из годового отчета данные успешно считаны.");
+    if (0 < contentYear.size()) System.out.println(
+      "Из годового отчета данные успешно считаны."
+    );
   }
 
   public HashMap<Integer, ArrayList<MonthTotalPerYear>> getMonthTotalPerYear() {
@@ -65,7 +67,8 @@ public class YearlyReport {
     );
   }
 
-  public double expensesPerYear() {
+  public double averageExpensesPerYear() {
+    int montCounter = 0;
     int expense = 0;
     for (int i = 1; i <= monthsTotalPerYear.size(); i++) {
       ArrayList<MonthTotalPerYear> monthTotalPerYearList = monthsTotalPerYear.get(
@@ -74,14 +77,16 @@ public class YearlyReport {
 
       for (MonthTotalPerYear monthTotalPerYear : monthTotalPerYearList) {
         if (monthTotalPerYear.expense) {
+          montCounter += 1;
           expense += monthTotalPerYear.amount;
         }
       }
     }
-    return expense;
+    return expense / montCounter;
   }
 
-  public double profitsPerYear() {
+  public double averageProfitsPerYear() {
+    int montCounter = 0;
     int profit = 0;
     for (int i = 1; i <= monthsTotalPerYear.size(); i++) {
       ArrayList<MonthTotalPerYear> monthTotalPerYearList = monthsTotalPerYear.get(
@@ -89,11 +94,12 @@ public class YearlyReport {
       );
       for (MonthTotalPerYear monthTotalPerYear : monthTotalPerYearList) {
         if (!monthTotalPerYear.expense) {
+          montCounter += 1;
           profit += monthTotalPerYear.amount;
         }
       }
     }
-    return profit;
+    return profit / montCounter;
   }
 
   public boolean isYearlyReportsRead() {

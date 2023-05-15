@@ -6,13 +6,11 @@ public class MonthlyReport {
   private final String FILE_NAME = "m.20210";
   private final String EXPANSION = ".csv";
   private final int NUMBER_MONTHLY_REPORTS = 3;
-  private int allOperationsCount = 0;
   private boolean monthlyReportsRead = false;
-  final FileReader fileReader = new FileReader();
+  private final FileReader fileReader = new FileReader();
   private final HashMap<Integer, ArrayList<Transaction>> transactions = new HashMap<>();
 
   public void readMonthlyReports() {
-    allOperationsCount = 0;
     transactions.clear();
 
     for (int i = 1; i <= NUMBER_MONTHLY_REPORTS; i++) {
@@ -33,8 +31,6 @@ public class MonthlyReport {
           sumOfOne
         );
 
-        allOperationsCount += 1;
-
         if (transactions.containsKey(i)) {
           transactions.get(i).add(transaction);
         } else {
@@ -44,7 +40,9 @@ public class MonthlyReport {
         }
         monthlyReportsRead = true;
       }
-      System.out.println("Из отчета номер " + i + " данные успешно считаны.");
+      if (i <= contentMonth.size()) System.out.println(
+        "Из отчета номер " + i + " данные успешно считаны."
+      );
     }
   }
 
@@ -124,9 +122,5 @@ public class MonthlyReport {
 
   public boolean isMonthlyReportsRead() {
     return monthlyReportsRead;
-  }
-
-  public int allOperationsCount() {
-    return allOperationsCount;
   }
 }

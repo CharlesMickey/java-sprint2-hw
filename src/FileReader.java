@@ -11,7 +11,7 @@ public class FileReader {
       return new ArrayList<>(Files.readAllLines(Path.of(path)));
     } catch (IOException e) {
       System.out.println(
-        "Невозможно прочитать файл с отчётом. Возможно, файл отсутствует в нужной директории."
+        "Невозможно прочитать файл с отчётом. Возможно, файл отсутствует по указанному пути: " + path
       );
       return new ArrayList<>();
     }
