@@ -44,7 +44,7 @@ public class ReportEngine {
         String.format("%.3f", yearlyReport.averageExpensesPerYear())
       );
     } else {
-      System.out.println("Пожалуйста, сначала считайте данные годовог отчета");
+      System.out.println("Пожалуйста, сначала считайте данные годового отчета");
     }
   }
 
