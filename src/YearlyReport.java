@@ -9,7 +9,9 @@ public class YearlyReport {
   private final HashMap<Integer, ArrayList<MonthTotalPerYear>> monthsTotalPerYear = new HashMap<>();
 
   void readYearlyReport() {
+
     monthsTotalPerYear.clear();
+
     ArrayList<String> contentYear = fileReader.readFileContents(FILE_NAME);
     for (int i = 1; i < contentYear.size(); i++) {
       String line = contentYear.get(i);
